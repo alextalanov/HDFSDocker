@@ -36,11 +36,18 @@ def generate_configs(configuration: Path):
     hdfs_site = Path(env['HADOOP_CONFIG']) / "hdfs-site.xml"
     create_xml(file=hdfs_site, configuration=config.get('hdfs_site'))
 
+    yarn_site = Path(env['HADOOP_CONFIG']) / "yarn-site.xml"
+    create_xml(file=yarn_site, configuration=config.get('yarn_site'))
+
+
 command = argv[1]
 
 if len(argv) > 2:
     generate_configs(configuration=Path(argv[2]))
 
-status = bash('hadoop-daemon.sh --config $HADOOP_CONFIG --script {}'.format(command))
+
+bash_command='hadoop-daemon.sh --config $HADOOP_CONFIG --script {}'.format(command)
+print("Start using bash command: {}".format(bash_command))
+status = bash(bash_command)
 
 print("POSIX Status: {}".format(status))
