@@ -1,4 +1,4 @@
-FROM dockeralexandrtalan/java11
+FROM dockeralexandrtalan/java8
 
 ARG HOME=/usr/local/lib
 ARG APP=/usr/local/bin
