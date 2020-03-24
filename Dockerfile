@@ -7,7 +7,6 @@ ARG CLUSTER_NAME=hdfs_cluster
 
 WORKDIR $HOME
 
-RUN apt install -y  python3
 RUN wget --no-check-certificate https://www.dropbox.com/s/6tfsqxf60ja3ddx/hadoop-2.9.2.tar.gz?dl=0 -O $HADOOP_ARHIVE
 RUN tar -xvzf $HADOOP_ARHIVE
 RUN rm -f $HADOOP_ARHIVE
