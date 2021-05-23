@@ -34,8 +34,8 @@ DIR=$HADOOP_PID_DIR
 PID=$(cat $DIR/$(ls $DIR | grep ^.*\.pid$))
 
 sleep 1m
-echo "Monitoring for process=$PID ..."
+echo "Monitoring process ID: $PID, status: UP"
 while [ -e /proc/$PID ]; do
     sleep 5m
 done
-echo "Process $PID has finished"
+echo "Process with ID: $PID has finished"

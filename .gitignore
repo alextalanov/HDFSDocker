@@ -1,3 +1,4 @@
+.idea
 /hadoop-logs/
 /hadoop-config/*
 !/hadoop-config/hadoop-config.json

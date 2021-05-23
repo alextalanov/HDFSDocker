@@ -2,16 +2,17 @@ FROM dockeralexandrtalan/java8
 
 ARG HOME=/usr/local/lib
 ARG APP=/usr/local/bin
-ARG HADOOP_ARHIVE=hadoop-2.9.2.tar.gz
+ARG HADOOP_VERSION=hadoop-2.9.2
+ARG HADDOP_ARCHIVE=${HADOOP_VERSION}.tar.gz
 ARG CLUSTER_NAME=hdfs_cluster
 
 WORKDIR $HOME
 
-RUN wget --no-check-certificate https://www.dropbox.com/s/6tfsqxf60ja3ddx/hadoop-2.9.2.tar.gz?dl=0 -O $HADOOP_ARHIVE
-RUN tar -xvzf $HADOOP_ARHIVE
-RUN rm -f $HADOOP_ARHIVE
+RUN wget --no-check-certificate https://www.dropbox.com/s/6tfsqxf60ja3ddx/$HADDOP_ARCHIVE?dl=0 -O $HADDOP_ARCHIVE
+RUN tar -xvzf $HADDOP_ARCHIVE
+RUN rm -f $HADDOP_ARCHIVE
 
-ENV HADOOP_HOME=$HOME/hadoop-2.9.2
+ENV HADOOP_HOME=$HOME/$HADOOP_VERSION
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$APP
 ENV HADOOP_CONFIG=$HADOOP_HOME/etc/hadoop/
 ENV HADOOP_PID_DIR=$HADOOP_HOME
