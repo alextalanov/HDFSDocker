@@ -9,6 +9,7 @@ ARG CLUSTER_NAME=hadoop_cluster
 WORKDIR $HOME
 
 RUN wget --no-check-certificate https://www.dropbox.com/s/qfdzagns2sj867n/$HADDOP_ARCHIVE?dl=0 -O $HADDOP_ARCHIVE
+
 RUN tar -xvzf $HADDOP_ARCHIVE
 RUN rm -f $HADDOP_ARCHIVE
 
@@ -29,4 +30,3 @@ RUN chmod 777 $APP/easy-start.py
 RUN chmod 777 $APP/entrypoint.sh
 
 CMD ["entrypoint.sh"]
-
