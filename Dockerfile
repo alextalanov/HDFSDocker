@@ -4,7 +4,7 @@ ARG HOME=/usr/local/lib
 ARG APP=/usr/local/bin
 ARG HADOOP_VERSION=hadoop-2.10.1
 ARG HADDOP_ARCHIVE=${HADOOP_VERSION}.tar.gz
-ARG CLUSTER_NAME=g5_test_cluster
+ARG CLUSTER_NAME=hadoop_cluster
 
 WORKDIR $HOME
 
