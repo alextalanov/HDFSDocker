@@ -38,4 +38,5 @@ echo "Monitoring process ID: $PID, status: UP"
 while [ -e /proc/$PID ]; do
     sleep 5m
 done
+
 echo "Process with ID: $PID has finished"

@@ -2,13 +2,14 @@ FROM dockeralexandrtalan/java8
 
 ARG HOME=/usr/local/lib
 ARG APP=/usr/local/bin
-ARG HADOOP_VERSION=hadoop-2.9.2
+ARG HADOOP_VERSION=hadoop-2.10.1
 ARG HADDOP_ARCHIVE=${HADOOP_VERSION}.tar.gz
-ARG CLUSTER_NAME=hdfs_cluster
+ARG CLUSTER_NAME=hadoop_cluster
 
 WORKDIR $HOME
 
-RUN wget --no-check-certificate https://www.dropbox.com/s/6tfsqxf60ja3ddx/$HADDOP_ARCHIVE?dl=0 -O $HADDOP_ARCHIVE
+RUN wget --no-check-certificate https://www.dropbox.com/s/qfdzagns2sj867n/$HADDOP_ARCHIVE?dl=0 -O $HADDOP_ARCHIVE
+
 RUN tar -xvzf $HADDOP_ARCHIVE
 RUN rm -f $HADDOP_ARCHIVE
 
@@ -29,4 +30,3 @@ RUN chmod 777 $APP/easy-start.py
 RUN chmod 777 $APP/entrypoint.sh
 
 CMD ["entrypoint.sh"]
-
