@@ -2,21 +2,22 @@ version: "3.7"
 services:
   namenode:
     container_name: namenode
-    image: "docker.io/dockeralexandrtalan/hadoop"
-    entrypoint: /bin/bash entrypoint.sh --command "hdfs start namenode" --config "/usr/local/lib/hadoop-2.9.2/etc/hadoop/hadoop-config.json"
+    build: .
+    entrypoint: /bin/bash entrypoint.sh --command "hdfs start namenode" --config "$HADOOP_CONFIG/hadoop-config.json"
     volumes:
-      - ./hadoop-config:/usr/local/lib/hadoop-2.9.2/etc/hadoop/
-      - ./hadoop-logs:/usr/local/lib/hadoop-2.9.2/logs/
+      - ./hadoop-config:$HADOOP_CONFIG
+      - ./hadoop-logs:$HADOOP_LOGS
     ports:
       - "9870:9870"
     networks:
       - hadoop
-  datanode:
-    image: "docker.io/dockeralexandrtalan/hadoop"
-    entrypoint: /bin/bash entrypoint.sh --command "hdfs start datanode" --config "/usr/local/lib/hadoop-2.9.2/etc/hadoop/hadoop-config.json"
+  datanode_1:
+    container_name: datanode_1
+    build: .
+    entrypoint: /bin/bash entrypoint.sh --command "hdfs start datanode" --config "$HADOOP_CONFIG/hadoop-config.json"
     volumes:
-      - ./hadoop-config:/usr/local/lib/hadoop-2.9.2/etc/hadoop/
-      - ./hadoop-logs:/usr/local/lib/hadoop-2.9.2/logs/
+      - ./hadoop-config:$HADOOP_CONFIG
+      - ./hadoop-logs:$HADOOP_LOGS
     ports:
       - "50075:50075"
     networks:
@@ -25,35 +26,35 @@ services:
       - namenode
   resourcemanager:
     container_name: resourcemanager
-    image: "docker.io/dockeralexandrtalan/hadoop"
-    entrypoint: /bin/bash entrypoint.sh --command "yarn start resourcemanager" --config "/usr/local/lib/hadoop-2.9.2/etc/hadoop/hadoop-config.json"
+    build: .
+    entrypoint: /bin/bash entrypoint.sh --command "yarn start resourcemanager" --config "$HADOOP_CONFIG/hadoop-config.json"
     volumes:
-      - ./hadoop-config:/usr/local/lib/hadoop-2.9.2/etc/hadoop/
-      - ./hadoop-logs:/usr/local/lib/hadoop-2.9.2/logs/
+      - ./hadoop-config:$HADOOP_CONFIG
+      - ./hadoop-logs:$HADOOP_LOGS
     ports:
       - "12050:12050"
     networks:
       - hadoop
-  nodemanager1:
-    container_name: nodemanager1
-    image: "docker.io/dockeralexandrtalan/hadoop"
-    entrypoint: /bin/bash entrypoint.sh --command "yarn start nodemanager" --config "/usr/local/lib/hadoop-2.9.2/etc/hadoop/hadoop-config.json"
+  nodemanager_1:
+    container_name: nodemanager_1
+    build: .
+    entrypoint: /bin/bash entrypoint.sh --command "yarn start nodemanager" --config "$HADOOP_CONFIG/hadoop-config.json"
     volumes:
-      - ./hadoop-config:/usr/local/lib/hadoop-2.9.2/etc/hadoop/
-      - ./hadoop-logs:/usr/local/lib/hadoop-2.9.2/logs/
+      - ./hadoop-config:$HADOOP_CONFIG
+      - ./hadoop-logs:$HADOOP_LOGS
     ports:
       - "8042:8042"
     networks:
       - hadoop
     depends_on:
       - resourcemanager
-  nodemanager2:
-    container_name: nodemanager2
-    image: "docker.io/dockeralexandrtalan/hadoop"
-    entrypoint: /bin/bash entrypoint.sh --command "yarn start nodemanager" --config "/usr/local/lib/hadoop-2.9.2/etc/hadoop/hadoop-config.json"
+  nodemanager_2:
+    container_name: nodemanager_2
+    build: .
+    entrypoint: /bin/bash entrypoint.sh --command "yarn start nodemanager" --config "$HADOOP_CONFIG/hadoop-config.json"
     volumes:
-      - ./hadoop-config:/usr/local/lib/hadoop-2.9.2/etc/hadoop/
-      - ./hadoop-logs:/usr/local/lib/hadoop-2.9.2/logs/
+      - ./hadoop-config:$HADOOP_CONFIG
+      - ./hadoop-logs:$HADOOP_LOGS
     ports:
       - "8043:8042"
     networks:
