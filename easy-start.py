@@ -26,6 +26,7 @@ def create_xml(file: Path, configuration: dict):
     with file.open(mode='wb') as xml_file:
         xml_file.write(bytes(pretty_xml, encoding='utf-8'))
 
+
 def generate_configs(configuration: Path):
     with configuration.open(mode='r') as config_file:
         config = json.load(config_file)
